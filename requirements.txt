@@ -1,0 +1,9 @@
+textblob
+ipython
+pytest
+click
+black
+pylint
+wikipedia
+nltk
+pattern
