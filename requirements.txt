@@ -1,9 +1,11 @@
 textblob
 ipython
 pytest
+pytest-cov
 click
 black
 pylint
 wikipedia
 nltk
 pattern
+fire

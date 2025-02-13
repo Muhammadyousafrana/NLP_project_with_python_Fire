@@ -6,11 +6,10 @@ install:
 
 
 test:
-	pytest -vvv test_hello.py
+	pytest -vv --cov=nlplogic test_corenlp.py
 
 lint:
-	pylint --disable=R,C hello.py
-
+	pylint --disable=R,C *.py nlplogic/*.py
 format:
-	code *.py
+	black *.py nlplogic
 all: install test lint format
