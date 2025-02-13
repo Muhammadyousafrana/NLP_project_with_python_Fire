@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt
+        python -m textblob.download_corpora
+
+    - name: Run tests
+      run: |
+        pytest -vv --cov=nlplogic test_corenlp.py
+
+    - name: Lint code
+      run: |
+        pylint --disable=R,C *.py nlplogic/*.py
+
+    - name: Format code
+      run: |
+        black *.py nlplogic
